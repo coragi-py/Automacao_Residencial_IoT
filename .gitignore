@@ -1,0 +1,32 @@
+# Ficheiros do Sistema Operativo
+.DS_Store
+Thumbs.db
+
+# Ficheiros e Pastas de Python / MicroPython
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Configurações de Editores de Código (VS Code, IntelliJ, etc.)
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node-RED (Ignorar ficheiros de dependências e de credenciais privadas)
+node_modules/
+*_cred.json
+flows_cred.json
+.config.json
+.sessions.json
+
+# Ficheiros de log e ambiente
+*.log
+.env
