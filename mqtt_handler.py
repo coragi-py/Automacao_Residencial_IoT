@@ -8,7 +8,7 @@ relay = Pin(4, Pin.OUT)
 buzzer = Pin(5, Pin.OUT)
 
 # Configurações do Broker HiveMQ
-MQTT_CLIENT_ID = "esp32_iot_academic_m2_12345" # Adicione números aleatórios para evitar colisão
+MQTT_CLIENT_ID = "esp32_iot_academic_m2_010520268888" # Adicione números aleatórios para evitar colisão
 MQTT_BROKER = "broker.hivemq.com"
 MQTT_TELEMETRY_TOPIC = b"automa/m2/telemetry"
 MQTT_COMMAND_TOPIC = b"automa/m2/commands"
