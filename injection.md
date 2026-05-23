@@ -9,6 +9,7 @@ print("Conectando à rede Wi-Fi Wokwi-GUEST...")
 station = network.WLAN(network.STA_IF)
 station.active(True)
 station.connect('Wokwi-GUEST', '')
+print(station.ifconfig())
 while not station.isconnected():
     print(".", end="")
     time.sleep(0.5)
