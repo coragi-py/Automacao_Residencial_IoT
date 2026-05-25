@@ -1,7 +1,6 @@
-
 # Projeto Acadêmico de Automação Residencial IoT 🏠🔌
 
-Este repositório contém a documentação, firmware e diagramas de um sistema completo de **Automação Residencial (Internet das Coisas - IoT)** baseado no microcontrolador **ESP32** e programado em **MicroPython**. 
+Este repositório contém a documentação, firmware e diagramas de um sistema completo de **Automação Residencial (Internet das Coisas - IoT)** baseado no microcontrolador **ESP32** e programado em **MicroPython**.
 
 O sistema foi concebido de forma altamente modular e robusta, operando de maneira híbrida: oferece uma **interface web de controle local de baixa latência** (HTTP/AJAX) diretamente no chip, e se integra de forma assíncrona a uma **infraestrutura em nuvem** (MQTT/Node-RED) para dashboards, automação complexa, alertas por e-mail e registro histórico de dados (Data Logging) em planilhas digitais.
 
@@ -9,12 +8,12 @@ O sistema foi concebido de forma altamente modular e robusta, operando de maneir
 
 ## 🛠️ Stack Tecnológica
 
-* **Core Hardware / Firmware:** ESP32, MicroPython v1.28.
-* **Protocolos de Rede:** * **HTTP:** Servidor embarcado assíncrono para controle local via navegador.
-    * **MQTT:** Protocolo Pub/Sub leve para telemetria e comandos remotos via Broker Público HiveMQ.
-* **Orquestração e Nuvem (Backend):** Node-RED (Processamento de fluxos de automação e regras de negócio).
-* **Banco de Dados & Storage:** Google Sheets integrado via Google Apps Script (Web App POST requests).
-* **Ambiente de Desenvolvimento & Simulação:** VS Code, Extensão Wokwi Local Simulator, Python 3.
+- **Core Hardware / Firmware:** ESP32, MicroPython v1.28.
+- **Protocolos de Rede:** \* **HTTP:** Servidor embarcado assíncrono para controle local via navegador.
+  - **MQTT:** Protocolo Pub/Sub leve para telemetria e comandos remotos via Broker Público HiveMQ.
+- **Orquestração e Nuvem (Backend):** Node-RED (Processamento de fluxos de automação e regras de negócio).
+- **Banco de Dados & Storage:** Google Sheets integrado via Google Apps Script (Web App POST requests).
+- **Ambiente de Desenvolvimento & Simulação:** VS Code, Extensão Wokwi Local Simulator, Python 3.
 
 ---
 
@@ -23,45 +22,67 @@ O sistema foi concebido de forma altamente modular e robusta, operando de maneir
 O circuito eletrônico virtual foi mapeado de forma estrita no simulador para garantir a consistência das portas entre o arquivo físico (`diagram.json`) e os drivers do MicroPython.
 
 ### Sensores (Entradas)
-* **DHT22 (Temperatura e Umidade):** GPIO 15
-* **LDR (Sensor de Luminosidade):** GPIO 34 (Leitura Analógica via ADC)
-* **PIR (Sensor de Presença/Movimento):** GPIO 13
-* **Push Button (Simulador de Contato Porta/Janela):** GPIO 12
+
+- **DHT22 (Temperatura e Umidade):** GPIO 15
+- **LDR (Sensor de Luminosidade):** GPIO 34 (Leitura Analógica via ADC)
+- **PIR (Sensor de Presença/Movimento):** GPIO 13
+- **Push Button (Simulador de Contato Porta/Janela):** GPIO 12
 
 ### Atuadores (Saídas)
-* **LED (Iluminação Principal):** GPIO 2
-* **Módulo Relé (Ar-Condicionado / Cargas Pesadas):** GPIO 4
-* **Buzzer (Alarme de Intrusão Sonoro):** GPIO 5
-* **Display OLED (SSD1306 128x64):** Interface I2C (SCL: GPIO 22 | SDA: GPIO 21)
+
+- **LED (Iluminação Principal):** GPIO 2
+- **Módulo Relé (Ar-Condicionado / Cargas Pesadas):** GPIO 4
+- **Buzzer (Alarme de Intrusão Sonoro):** GPIO 5
+- **Display OLED (SSD1306 128x64):** Interface I2C (SCL: GPIO 22 | SDA: GPIO 21)
 
 ---
 
 ## 🚀 Como Executar o Projeto (Guia Rápido)
 
 ### Passo 1: Preparar o Ambiente
+
 1. **Baixe o projeto:** Faça o download deste repositório (ZIP) ou use `git clone`.
 2. **Abra a pasta** do projeto no **Visual Studio Code**.
 3. Certifique-se de ter instalado: **Python 3**, a extensão **Wokwi Simulator** no VS Code e o **Node-RED** na sua máquina.
 
 ### Passo 2: Configurar a Nuvem (Node-RED)
+
 1. Abra o Node-RED (`http://localhost:1880`).
 2. Vá no menu > **Import** e selecione os arquivos `node-red-flow.json` e `node-red-alerts.json` desta pasta.
-3. Se faltar o nó de e-mail, vá em *Manage Palette*, aba *Install*, e instale o `node-red-node-email`.
+3. Se faltar o nó de e-mail, vá em _Manage Palette_, aba _Install_, e instale o `node-red-node-email`.
 4. Dê um duplo clique nos nós de **Email** e **Google Sheets** para colocar suas credenciais e a URL do seu App Script.
 5. Clique no botão vermelho **Deploy** no canto superior direito.
 
 ### Passo 3: Ligar a Placa Virtual
+
 1. No VS Code, abra o arquivo `diagram.json`.
-2. Clique no botão verde de **Play** do Wokwi (ou aperte `F1` > *Wokwi: Start Simulator*).
+2. Clique no botão verde de **Play** do Wokwi (ou aperte `F1` > _Wokwi: Start Simulator_).
 3. Aguarde o terminal preto do Wokwi carregar e parar na tela com os símbolos `>>>`. **Deixe rodando.**
 
 ### Passo 4: Enviar o Código (Deploy Automático)
+
 1. Com a simulação rodando, abra um **Terminal** novo dentro do VS Code.
 2. Digite o comando abaixo e aperte Enter:
+
    ```bash
-   
+
    python deploy.py
+   ```
+
 3. O script vai enviar todos os arquivos sozinho. Aguarde a placa reiniciar e o terminal mostrar a mensagem: "MQTT Conectado!".
+
+### 🔐 Configuração das Variáveis de Ambiente (.env)
+
+Para que as integrações com os serviços do Google (envio de alertas por e-mail e registro no Google Sheets) funcionem corretamente, você precisa configurar suas credenciais locais.
+
+1. Na raiz do projeto, crie um novo arquivo chamado **`.env`** (com o ponto no início).
+2. Copie a estrutura do arquivo `.env.example` (ou o bloco abaixo) e cole dentro do seu recém-criado `.env`.
+3. Substitua os valores de exemplo pelas suas credenciais reais:
+
+````env
+senha_app_google="Senha de aplicativo de terceiros do Google"
+url_app_google="Url do Google Apps Script"
+codigo_implantacao="Código de implantação do Google Apps Script"
 
 ### Passo 5: Testar a aplicação!
 Controle Web Local: Abra seu navegador (Chrome/Edge) e acesse http://127.0.0.1:8080. Clique nos botões para ligar/desligar o LED, Relé e Buzzer no simulador.
@@ -88,3 +109,4 @@ Teste de Alarme: No Wokwi, simule movimento clicando no sensor PIR. Você recebe
 ├── ssd1306.py               # Driver de controle do controlador gráfico do Display OLED (Local)
 └── umqtt/
     └── simple.py            # Biblioteca estável de comunicação cliente MQTT (Local)
+````
