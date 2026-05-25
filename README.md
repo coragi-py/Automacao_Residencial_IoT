@@ -83,6 +83,7 @@ Para que as integrações com os serviços do Google (envio de alertas por e-mai
 senha_app_google="Senha de aplicativo de terceiros do Google"
 url_app_google="Url do Google Apps Script"
 codigo_implantacao="Código de implantação do Google Apps Script"
+```
 
 ### Passo 5: Testar a aplicação!
 Controle Web Local: Abra seu navegador (Chrome/Edge) e acesse http://127.0.0.1:8080. Clique nos botões para ligar/desligar o LED, Relé e Buzzer no simulador.
