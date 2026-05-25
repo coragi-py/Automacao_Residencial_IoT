@@ -79,19 +79,19 @@ Para que as integrações com os serviços do Google (envio de alertas por e-mai
 2. Copie a estrutura do arquivo `.env.example` (ou o bloco abaixo) e cole dentro do seu recém-criado `.env`.
 3. Substitua os valores de exemplo pelas suas credenciais reais:
 
-````env
+```env
 senha_app_google="Senha de aplicativo de terceiros do Google"
 url_app_google="Url do Google Apps Script"
 codigo_implantacao="Código de implantação do Google Apps Script"
 ```
 
 ### Passo 5: Testar a aplicação!
+
 Controle Web Local: Abra seu navegador (Chrome/Edge) e acesse http://127.0.0.1:8080. Clique nos botões para ligar/desligar o LED, Relé e Buzzer no simulador.
 
 Dashboard em Nuvem: Acesse http://localhost:1880/ui para ver os gráficos de temperatura e umidade atualizando em tempo real.
 
-Teste de Alarme: No Wokwi, simule movimento clicando no sensor PIR. Você receberá um e-mail de alerta gerado pelo Node-RED!
----
+## Teste de Alarme: No Wokwi, simule movimento clicando no sensor PIR. Você receberá um e-mail de alerta gerado pelo Node-RED!
 
 ## 📂 Estrutura de Diretórios do Projeto
 
@@ -110,4 +110,4 @@ Teste de Alarme: No Wokwi, simule movimento clicando no sensor PIR. Você recebe
 ├── ssd1306.py               # Driver de controle do controlador gráfico do Display OLED (Local)
 └── umqtt/
     └── simple.py            # Biblioteca estável de comunicação cliente MQTT (Local)
-````
+```
