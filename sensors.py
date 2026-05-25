@@ -4,7 +4,7 @@ import dht
 # Mapeamento estrito de hardware (GPIOs da Etapa 1)
 dht_sensor = dht.DHT22(Pin(15))
 ldr_sensor = ADC(Pin(34))
-ldr_sensor.atten(ADC.ATTN_11V) # Configuração para leitura até 3.3V
+ldr_sensor.atten(ADC.ATTN_11DB) # Configuração para leitura até 3.3V
 pir_sensor = Pin(27, Pin.IN)
 btn_sensor = Pin(14, Pin.IN, Pin.PULL_UP)
 
