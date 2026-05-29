@@ -91,7 +91,7 @@ Controle Web Local: Abra seu navegador (Chrome/Edge) e acesse http://127.0.0.1:8
 
 Dashboard em Nuvem: Acesse http://localhost:1880/ui para ver os gráficos de temperatura e umidade atualizando em tempo real.
 
-## Teste de Alarme: No Wokwi, simule movimento clicando no sensor PIR. Você receberá um e-mail de alerta gerado pelo Node-RED!
+#### Teste de Alarme: No Wokwi, simule movimento clicando no sensor PIR. Você receberá um e-mail de alerta gerado pelo Node-RED!
 
 ## 📂 Estrutura de Diretórios do Projeto
 
