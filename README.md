@@ -92,6 +92,26 @@ Controle Web Local: Abra seu navegador (Chrome/Edge) e acesse http://127.0.0.1:8
 Dashboard em Nuvem: Acesse http://localhost:1880/ui para ver os gráficos de temperatura e umidade atualizando em tempo real.
 
 #### Teste de Alarme: No Wokwi, simule movimento clicando no sensor PIR. Você receberá um e-mail de alerta gerado pelo Node-RED!
+---
+
+## 📡 Tópicos MQTT
+| Tópico | Direção | Descrição |
+|--------|---------|-----------|
+| `automa/m2/telemetry` | ESP32 → Node-RED | Temperatura (em ºC via JSON msg.payload.temp) |
+| `automa/m2/telemetry` | ESP32 → Node-RED | Umidade (em % via JSON msg.payload.hum) |
+| `automa/m2/telemetry` | ESP32 → Node-RED | Luminosidade (Gráfico LDR via JSON msg.payload.ldr) |
+| `automa/m2/telemetry` | ESP32 → Node-RED | Presença/Movimento (PIR: 0 ou 1 via JSON msg.payload.pir) |
+| `automa/m2/commands` | ESP32 → Node-RED | Comando Luz (LED): {"device":"led","action":"on/off"} |
+| `automa/m2/commands` | ESP32 → Node-RED | Comando Ar-Condicionado (Relé): {"device":"relay","action":"on/off"} |
+| `automa/m2/commands` | ESP32 → Node-RED | Comando Alarme (Buzzer): {"device":"buzzer","action":"on/off"} |
+
+---
+### Parametros:
+ - QoS: Todos os nós MQTT estão configurados com QoS 0 (entrega no máximo uma vez).
+ - Broker: A comunicação está apontada para o broker público broker.hivemq.com na porta 1883.
+ - Regras de Alerta: O tópico de telemetria é interceptado no Node-RED para disparar e-mails caso a temperatura seja >= 35ºC ou o PIR seja igual a 1.
+
+---
 
 ## 📂 Estrutura de Diretórios do Projeto
 
